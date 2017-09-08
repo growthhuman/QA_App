@@ -9,6 +9,7 @@ import android.support.constraint.solver.widgets.Snapshot;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -57,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         mCreateAccountListener = new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d("ERROR","エラーです");
                 if (task.isSuccessful()) {
                     //成功した場合
                     //ログインを行う
@@ -143,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Todo ここ本当？ずっとでてるけど・・・
                 // キーボードが出てたら閉じる
                 InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -150,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmailEditText.getText().toString();
                 String password = mPasswordEditText.getText().toString();
                 String name = mNameEditText.getText().toString();
-
+                Log.d("ERROR","エラーです");
                 if (email.length() != 0 && password.length() >= 6 && name.length() != 0) {
                     // ログイン時に表示名を保存するようにフラグを立てる
                     mIsCreateAccount = true;
@@ -191,15 +194,16 @@ public class LoginActivity extends AppCompatActivity {
 
     //処理中のダイアログを表示してFirebaseにアカウント作成を指示。
     public void createAccount(String email, String password) {
+        Log.d("ERROR","エラーです");
         //プログレスダイアログを表示する
         mProgress.show();
-
         //アカウント作成する
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(mCreateAccountListener);
     }
 
     //処理中のダイアログを表示してFirebaseにログインを指示。
     public void login(String email, String password) {
+        Log.d("ERROR","エラーです");
         //プログレスダイアログを表示する
         mProgress.show();
 
